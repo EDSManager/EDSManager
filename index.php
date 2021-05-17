@@ -1,11 +1,4 @@
 <?php
-//error_reporting (-1);
-// Показывать всю информацию, по умолчанию INFO_ALL
-//phpinfo();
-
-// Показывать информацию только о загруженных модулях.
-// phpinfo(8) выдает тот же результат.
-//phpinfo(INFO_MODULES);
 
 $sConfigFile = 'config/config-ESDManager.php';
 $sStartPage = './pages/UI.php';
@@ -38,5 +31,4 @@ else
     // Config file does not exist, need to run the setup wizard to create it
     header("Location: $sSetupPage");
 }
-
 ?>
