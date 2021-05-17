@@ -1,5 +1,6 @@
 <?php
+// SETUP PAGE
 
-echo "SETUP PAGE";
+echo 'Текущая версия PHP: ' . phpversion();
 
 ?>
