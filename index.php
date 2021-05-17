@@ -1,5 +1,5 @@
 <?php
-
+error_reporting (-1);
 // Показывать всю информацию, по умолчанию INFO_ALL
 phpinfo();
 
