@@ -17,9 +17,9 @@ if ($ver > 7.0) {
 }
 
     echo '"<form action="save_config.php" method="post" enctype="multipart/form-data">';
-    echo 'Ваше имя: <input type="text" name="name" /><br />';
-    echo 'Ваша фамилия: <input type="text" name="surname" /><br />';
-    echo 'Ваш телефон: <input type="text" name="phone" /><br />';
-    echo '<input type="submit" value="Отправить форму" />';
+    echo 'Имя MySQL сервера: <input type="text" name="MySQL_Server" /><br />';
+    echo 'Имя пользователя MySQL: <input type="text" name="MySQL_User" /><br />';
+    echo 'Пароль пользователя к MySQL: <input type="text" name="MySQL_Password" /><br />';
+    echo '<input type="submit" value="Сохранить" />';
     echo '</form>';
 ?>
