@@ -8,9 +8,10 @@ $sConfigFile = '../config/'.CONFIG_FILE;
 echo 'Создан файл конфигурации: '.$sConfigFile;
 
 //Принимаем постовые данные
-$MySQL_server=$_POST['MySQL_Server'];
-$MySQL_User=$_POST['MySQL_User'];
-$MySQL_Password=$_POST['MySQL_Password'];
+$db_host=$_POST['db_host'];
+$db_name=$_POST['db_name'];
+$db_user=$_POST['db_user'];
+$db_pwd=$_POST['db_pwd'];
 
 
 //создаем конфигурационный файл
@@ -26,15 +27,19 @@ to_cnf ('$MySettings = array(');
 to_cnf ('');
 to_cnf ('//');
 to_cnf ('//');
-to_cnf ("'MySQL_Server' => '".$MySQL_server."',");
+to_cnf ("'db_host' => '".$db_host."',");
 to_cnf ('');
 to_cnf ('//');
 to_cnf ('//');
-to_cnf ("'MySQL_User' => '".$MySQL_User."',");
+to_cnf ("'db_name' => '".$db_name."',");
 to_cnf ('');
 to_cnf ('//');
 to_cnf ('//');
-to_cnf ("'MySQL_Password' => '".$MySQL_Password."',");
+to_cnf ("'db_user' => '".$db_user."',");
+to_cnf ('');
+to_cnf ('//');
+to_cnf ('//');
+to_cnf ("'db_pwd' => '".$db_pwd."'");
 to_cnf ('');
 to_cnf (');');
 

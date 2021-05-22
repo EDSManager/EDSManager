@@ -17,9 +17,10 @@ if ($ver > 7.0) {
 }
 
     echo '"<form action="save_config.php" method="post" enctype="multipart/form-data">';
-    echo 'Имя MySQL сервера: <input type="text" name="MySQL_Server" /><br />';
-    echo 'Имя пользователя MySQL: <input type="text" name="MySQL_User" /><br />';
-    echo 'Пароль пользователя к MySQL: <input type="text" name="MySQL_Password" /><br />';
+    echo 'Имя сервера базы данных (db_host): <input type="text" name="db_host" /><br />';
+    echo 'Имя базы данных (db_name): <input type="text" name="db_name" /><br />';
+    echo 'Имя пользователя базы данных (db_user): <input type="text" name="db_user" /><br />';
+    echo 'Пароль пользователя базы данных (db_pwd): <input type="text" name="db_pwd" /><br />';
     echo '<input type="submit" value="Сохранить" />';
     echo '</form>';
 ?>
