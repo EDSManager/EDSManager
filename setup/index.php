@@ -15,4 +15,11 @@ if ($ver > 7.0) {
 } else {
     echo 'Error. Версия PHP не поддерживается';
 }
+
+    echo '"<form action="save_config.php" method="post" enctype="multipart/form-data">';
+    echo 'Ваше имя: <input type="text" name="name" /><br />';
+    echo 'Ваша фамилия: <input type="text" name="surname" /><br />';
+    echo 'Ваш телефон: <input type="text" name="phone" /><br />';
+    echo '<input type="submit" value="Отправить форму" />';
+    echo '</form>';
 ?>

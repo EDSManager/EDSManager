@@ -1,7 +1,7 @@
 <?php
 
 $sConfigFile = 'config/config-ESDManager.php';
-$sStartPage = './pages/UI.php';
+$sStartPage = './pages/index.php';
 $sSetupPage = './setup/index.php';
 
 /**
