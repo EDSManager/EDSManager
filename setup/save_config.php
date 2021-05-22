@@ -18,7 +18,9 @@ $MySQL_Password=$_POST['MySQL_Password'];
 $ip=$_SERVER['REMOTE_ADDR'];
 
 //формируем строку для записи
-$str='MySQL_Server: '.$MySQL_server.' \r\n'.'MySQL_User: '.$MySQL_User.' \r\n'.'MySQL_Password: '.$MySQL_Password.' \r\n'.$ip.'\r\n';
+$str = 'MySQL_Server: '.$MySQL_server.PHP_EOL;
+$str = $str.'MySQL_User: '.$MySQL_User.PHP_EOL;
+$str = $str.'MySQL_Password: '.$MySQL_Password.PHP_EOL;
 
 //открываем файл для записи.Если файл не существует-он будет создан
 $fopen  =  fopen($sConfigFile, 'a+');
