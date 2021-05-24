@@ -6,7 +6,7 @@ $sSetupPage = './setup/index.php';
 
 /**
  * Check that the configuration file exists and has the appropriate access rights
- * If the file does not exist, launch the configuration wizard to create it test
+ * If the file does not exist, launch the configuration wizard to create it new test
  */
 
 if (file_exists(dirname(__FILE__).'/'.$sConfigFile))
