@@ -42,13 +42,27 @@ if (!$result){
         echo " - нет таблицы, создаем";
         $query ="CREATE TABLE users (
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        login VARCHAR(20) NOT NULL,
-        password VARCHAR(20) NOT NULL)";
+        login VARCHAR(50) NOT NULL,
+        password VARCHAR(50) NOT NULL)";
         $result2 = mysqli_query($link, $query) or die("Connection failed: " . mysqli_connect_error());
     }
 }
 
 if ($result or $result2) echo " - OK<br>";
+
+echo "<br>";
+
+// если таблица пустая добавляем пользователя eds с паролем eds
+$query ="SELECT count(*) FROM users";
+$result = mysqli_query($link, $query) or die("Connection failed: " . mysqli_connect_error());
+
+$row = mysqli_fetch_row($result);
+if ($row[0] <= 0){
+    echo "Нет записей, добавляем";
+
+    $query = ("INSERT INTO ".$MySettings['db_name'].".users (login, password) VALUES ('eds', '".md5("eds")."')");
+    $result = mysqli_query($link, $query) or die("Connection failed: " . mysqli_connect_error());
+};
 
 // закрываем подключение
 mysqli_close($link);
