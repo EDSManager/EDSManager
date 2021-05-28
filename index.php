@@ -1,6 +1,6 @@
 <?php
 
-$sConfigFile = 'config/config-ESDManager.php';
+$sConfigFile = './config/config-ESDManager.php';
 $sStartPage = './UI/index.php';
 $sSetupPage = './setup/index.php';
 
@@ -9,7 +9,7 @@ $sSetupPage = './setup/index.php';
  * If the file does not exist, launch the configuration wizard to create it new test
  */
 
-if (file_exists(dirname(__FILE__).'/'.$sConfigFile))
+if (file_exists($sConfigFile))
 {
     if (!is_readable($sConfigFile))
     {
@@ -19,7 +19,8 @@ if (file_exists(dirname(__FILE__).'/'.$sConfigFile))
     {
         echo "<p><b>Security Warning</b>: the configuration file '$sConfigFile' should be read-only.</p>";
         echo "<p>Please modify the access rights to this file.</p>";
-        echo "<p>Click <a href=\"$sStartPage\">here</a> to ignore this warning and continue to run iTop.</p>";
+        echo "<p>Click <a href=\"$sStartPage\">RUN EDSManager</a> to ignore this warning and continue to run EDSManager</p>";
+        echo "<p>or click <a href=\"$sSetupPage\">SETUP</a> to configure EDSManager.</p>";
     }
     else
     {

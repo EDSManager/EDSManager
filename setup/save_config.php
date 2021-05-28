@@ -1,8 +1,6 @@
 <?php
 
-define('APPROOT', '../');
-define('APPCONF', APPROOT.'config/');
-define('CONFIG_FILE', APPCONF.'config-ESDManager.php');
+require_once ('../approot.inc.php');
 
 if (!is_dir(APPCONF)) {
     // создаём папку
