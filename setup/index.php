@@ -15,7 +15,7 @@ echo "<br><br>";
 
 if (file_exists(CONFIG_FILE)){
 
-    echo "Файл конфигурации: ".CONFIG_FILE." уже создан.";}
+    echo "Файл конфигурации: ".CONFIG_FILE." - OK.";}
 
     else {
 
