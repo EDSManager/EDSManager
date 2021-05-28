@@ -1,18 +1,21 @@
 <?php
 
-define('APPROOT', dirname(__FILE__).'/');
+define('APPROOT', '../');
 define('APPCONF', APPROOT.'config/');
-define('CONFIG_FILE', 'config-ESDManager.php');
+define('CONFIG_FILE', APPCONF.'config-ESDManager.php');
 
-$sConfigFile = '../config/'.CONFIG_FILE;
-echo 'Создан файл конфигурации: '.$sConfigFile;
+if (!is_dir(APPCONF)) {
+    // создаём папку
+    mkdir(APPCONF);
+}
 
-//Принимаем постовые данные
+//Принимаем данные
 $db_host=$_POST['db_host'];
 $db_name=$_POST['db_name'];
 $db_user=$_POST['db_user'];
 $db_pwd=$_POST['db_pwd'];
 
+echo 'Создаётся файл конфигурации: '.CONFIG_FILE;
 
 //создаем конфигурационный файл
 to_cnf ('<?php');
@@ -25,7 +28,7 @@ to_cnf ('*/');
 to_cnf ('');
 to_cnf ('$MySettings = array(');
 to_cnf ('');
-to_cnf ('//');
+to_cnf ('// Имя');
 to_cnf ('//');
 to_cnf ("'db_host' => '".$db_host."',");
 to_cnf ('');
@@ -47,10 +50,8 @@ echo ' - OK';
 
 function to_cnf ($a) {
 
-    $sConfigFile = '../config/'.CONFIG_FILE;
-
     //открываем файл для записи.Если файл не существует-он будет создан
-    $fopen  =  fopen($sConfigFile, 'a+');
+    $fopen  =  fopen(CONFIG_FILE, 'a+');
 //записываем строку
     fputs ($fopen, $a.PHP_EOL);
 //закрываем файл
