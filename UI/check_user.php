@@ -17,17 +17,19 @@ if (!$link) {
 // выполняем операции с базой данных
 $query ="SELECT id FROM users WHERE login = '". $q_login . "' AND password = '". MD5($q_password) ."'";
 
-//echo $query;
-
 $result = mysqli_query($link, $query);
 $row = mysqli_fetch_row($result);
 
 $id_user = $row[0];
-echo $id_user;
+
 // закрываем подключение
 mysqli_close($link);
 
+
 if ($id_user > 0) {
+
+    session_start();
+    $_SESSION['userid'] = $id_user;
 
     header("Location: ./main.php");
 

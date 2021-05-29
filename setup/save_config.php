@@ -55,3 +55,4 @@ function to_cnf ($a) {
 //закрываем файл
     fclose ($fopen);
 }
+?>
