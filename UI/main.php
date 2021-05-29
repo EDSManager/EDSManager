@@ -1,6 +1,20 @@
 <?php
 
-echo "Добро пожаловать в EDSManager";
+session_start();
+
+if (isset ($_SESSION["userid"])) {
+
+    echo "Добро пожаловать в EDSManager, ";
+
+    echo $_SESSION["userid"];
+
+}
+else {
+        echo("Не авторизован");
+        die;
+    };
+
+
 
 ?>
 
