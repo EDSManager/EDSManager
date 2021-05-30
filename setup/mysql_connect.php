@@ -66,4 +66,6 @@ if ($row[0] <= 0){
 
 // закрываем подключение
 mysqli_close($link);
+
+header("Location: ../");
 ?>

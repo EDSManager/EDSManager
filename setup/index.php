@@ -13,38 +13,65 @@ echo "</head>";
 echo "<body>";
 
 echo 'Текущая версия PHP: ' . phpversion();
-echo ' - ';
 
 $ver = (float)phpversion();
 
-if ($ver > 7.0) echo 'Ok'; elseif ($ver === 7.0) echo 'Ok';
-else echo 'Error. Версия PHP не поддерживается';
+if ($ver > 5.6) echo ' - Ok'; 
+else {
+    echo ' - Error. Версия PHP не поддерживается';
+    die();
+};
 
-echo "<br><br>";
-
-if (!is_dir(APPCONF)) {
-    // создаём папку конфига
-    mkdir(APPCONF) or die ("Нет прав на создание:". APPCONF);
-}
-
-echo "<br><br>";
+echo "<br>";
 
 if (file_exists(CONFIG_FILE)){
 
-    echo "Файл конфигурации: ".CONFIG_FILE." - OK.";}
+    echo "Файл конфигурации: ".CONFIG_FILE." - OK.<br>";}
 
     else {
 
-    echo '<form action="save_config.php" method="post" enctype="multipart/form-data">';
-    echo 'Имя сервера базы данных (db_host): <input type="text" name="db_host" value="localhost" /><br />';
-    echo 'Имя базы данных (db_name): <input type="text" name="db_name" value="eds"/><br />';
-    echo 'Имя пользователя базы данных (db_user): <input type="text" name="db_user" /><br />';
-    echo 'Пароль пользователя базы данных (db_pwd): <input type="text" name="db_pwd" /><br />';
-    echo "<br>";
-    echo '<input type="submit" value="Сохранить" />';
-    echo '</form>';
+        if (!is_dir(APPCONF)) {
+
+            // создаём папку конфига
+            echo "Создаем каталог: ". APPCONF;
+            if (!mkdir(APPCONF)) {
+                die('Не удалось создать каталог:'. APPCONF);
+            }
+
+        }
+
+
+        echo '<section class="container">';
+        echo '<div class="login">';
+
+echo '<h2>Настройка доступа к базе данных</h2>';
+echo '<form action="save_config.php" method="post" enctype="multipart/form-data" class = "new_form1">';
+echo '<table><tbody>';
+echo '<tr>';
+echo '    <td>Имя сервера базы данных (db_host):</td>';
+echo '    <td><input size=40 type="text" name="db_host" title="Имя сервера базы данных (db_host)" value="localhost" placeholder="Имя сервера базы данных (db_host)" /></td>';
+echo '</tr>';
+echo '<tr>';
+echo '    <td>Имя базы данных (db_name):</td>';
+echo '    <td><input size=40 type="text" name="db_name" title= "Имя базы данных (db_name)" value="eds" placeholder="Имя базы данных (db_name)" /></td>';
+echo '</tr>';
+echo '<tr>';
+echo '    <td>Имя пользователя базы данных (db_user):</td>';
+echo '    <td><input size=40 type="text" name="db_user" title= "Имя пользователя базы данных (db_user)" placeholder="Имя (db_user)"/></td>';
+echo '</tr>';
+echo '<tr>';
+echo '    <td>Пароль пользователя базы данных (db_pwd):</td>';
+echo '    <td><input size=40 type="text" name="db_pwd" title="Пароль пользователя базы данных (db_pwd)" placeholder="Пароль (db_pwd)" /></td>';
+echo '</tr>';
+echo '</tbody></table>';
+echo '<p></p>';
+echo '<input type="submit" value="Сохранить" />';
+echo '</form>';
+
     };
 
-echo "<br>";
+echo '</body>';
+echo '</html>';
+
 
 ?>
