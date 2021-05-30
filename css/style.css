@@ -209,3 +209,25 @@ input[type=submit]:active {
   line-height: 34px;
 }
 
+/* Убираем маркеры и отступы */
+.my_menu {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.my_menu li {
+  margin:0;
+  padding:0;
+  position:relative;
+}
+/* Общие правила для пунктов меню */
+.my_menu li a {
+  display:block;
+  margin:0;
+  padding:12px 20px;
+  text-decoration: none;
+}
+/*Наведение на активный пункт меню - курсор обычный */
+.my_menu li.active > a:hover {
+  cursor: default;
+}
