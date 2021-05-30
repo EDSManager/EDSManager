@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+
+if (isset ($_SESSION["userid"])) {
+
+    header("Location: ./main.php");
+
+}
+else {
 
 echo "<!DOCTYPE html>";
 echo "<head>><title>EDSManager | Вход</title>";
@@ -22,4 +30,5 @@ echo "<body>";
 echo "</body>";
 echo "</html>";
 
+};
 ?>
