@@ -10,8 +10,9 @@ if (isset ($_SESSION["userid"])) {
 
 }
 else {
-        echo("Не авторизован");
-        die;
+
+    header("Location: ../");
+
     };
 
 
