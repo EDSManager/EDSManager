@@ -41,6 +41,8 @@ if (!file_exists(CONFIG_FILE)) {
     to_cnf('');
     to_cnf(');');
 
+    chmod(CONFIG_FILE, 0444);
+
     echo ' - OK';
 };
 include_once ('./mysql_connect.php');
