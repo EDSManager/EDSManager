@@ -25,14 +25,17 @@ $id_user = $row[0];
 // закрываем подключение
 mysqli_close($link);
 
-
 if ($id_user > 0) {
 
     session_start();
     $_SESSION['userid'] = $id_user;
 
     header("Location: ./main.php");
-
 }
+else {
+
+    header("Location: ./");
+}
+
 
 ?>
