@@ -9,12 +9,12 @@ if (isset ($_SESSION["userid"])) {
 }
 else {
 
-echo "<!DOCTYPE html>";
-echo "<head>><title>EDSManager | Вход</title>";
+    echo "<!DOCTYPE html>";
+    echo "<head><title>EDSManager</title>";
     echo '<meta charset="utf-8">';
-	echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">';
-	echo '<link rel="stylesheet" href="../css/style.css">';
-echo "</head>";
+    echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">';
+    echo '<link rel="stylesheet" href="../css/style.css">';
+    echo "</head>";
 
 echo "<body>";
   echo '<section class="container">';

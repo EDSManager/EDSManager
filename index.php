@@ -5,22 +5,22 @@ $sStartPage = './UI/index.php';
 $sSetupPage = './setup/index.php';
 
 /**
- * Check that the configuration file exists and has the appropriate access rights
- * If the file does not exist, launch the configuration wizard to create it new test
+ * Проверяем наличие конфигурационного файла и его права доступа
+ * Если конфигурационный файл отсутствует, запускаем процедуру установки
  */
 
 if (file_exists($sConfigFile))
 {
     if (!is_readable($sConfigFile))
     {
-        echo "<p><b>Error</b>: Unable to read the configuration file: '$sConfigFile'. Please check the access rights on this file.</p>";
+        echo "<p><b>Error</b>: Нет доступа к конфигурационному файлу: '$sConfigFile'. Проверьте права доступа к этому файлу.</p>";
     }
     else if (is_writable($sConfigFile))
     {
-        echo "<p><b>Security Warning</b>: the configuration file '$sConfigFile' should be read-only.</p>";
-        echo "<p>Please modify the access rights to this file.</p>";
-        echo "<p>Click <a href=\"$sStartPage\">RUN EDSManager</a> to ignore this warning and continue to run EDSManager</p>";
-        echo "<p>or click <a href=\"$sSetupPage\">SETUP</a> to configure EDSManager.</p>";
+        echo "<p><b>Предупреждение безопасности</b>: конфигурационный файл '$sConfigFile' должен иметь атрибут ТОЛЬКО-ДЛЯ-ЧТЕНИЯ (read-only).</p>";
+        echo "<p>Измените права доступа к файлу.</p>";
+        echo "<p>Нажмите <a href=\"$sStartPage\">RUN EDSManager</a> для игнорироавния предупреждения безопасности и запуска EDSManager</p>";
+        echo "<p>или нажмите <a href=\"$sSetupPage\">SETUP</a> для внесения изменений в настройки EDSManager.</p>";
     }
     else
     {
@@ -29,7 +29,7 @@ if (file_exists($sConfigFile))
 }
 else
 {
-    // Config file does not exist, need to run the setup wizard to create it
+    // Конфигурационный файл отсутствует, запускаем процедуру установки для его создания
     header("Location: $sSetupPage");
 }
 ?>

@@ -3,6 +3,15 @@
 
 require_once ('../approot.inc.php');
 
+echo "<!DOCTYPE html>";
+echo "<head><title>EDSManager</title>";
+echo '<meta charset="utf-8">';
+echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">';
+echo '<link rel="stylesheet" href="../css/style.css">';
+echo "</head>";
+
+echo "<body>";
+
 echo 'Текущая версия PHP: ' . phpversion();
 echo ' - ';
 
@@ -10,6 +19,13 @@ $ver = (float)phpversion();
 
 if ($ver > 7.0) echo 'Ok'; elseif ($ver === 7.0) echo 'Ok';
 else echo 'Error. Версия PHP не поддерживается';
+
+echo "<br><br>";
+
+if (!is_dir(APPCONF)) {
+    // создаём папку конфига
+    mkdir(APPCONF) or die ("Нет прав на создание:". APPCONF);
+}
 
 echo "<br><br>";
 
@@ -30,7 +46,5 @@ if (file_exists(CONFIG_FILE)){
     };
 
 echo "<br>";
-
-include_once ('./mysql_connect.php');
 
 ?>
