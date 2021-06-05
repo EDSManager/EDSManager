@@ -42,7 +42,7 @@ if (!$result){
         echo " - нет таблицы, создаем";
         $query ="CREATE TABLE users (
         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        login VARCHAR(50) NOT NULL,
+        login VARCHAR(50) NOT NULL UNIQUE,
         password VARCHAR(50) NOT NULL)";
         $result2 = mysqli_query($link, $query) or die("Connection failed: " . mysqli_connect_error());
     }
