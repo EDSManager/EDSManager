@@ -1,61 +1,161 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+* {
+ margin: 0;
+ padding: 0;
 }
-
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-
+ 
 body {
-  line-height: 1;
+ width: 100%;
+ height: 100%;
+ color:#112D4E;
+/* background: url(images/body.png) 0px 0px repeat;*/
+    font-family: Arial, sans-serif;
+ font-size:0.94em;
+ line-height:135%;
+}
+ 
+h1 {
+ font-size:30px;
+ font-weight:normal;
+ padding:0px 0 0px;
+ line-height:100%;
+ /*font-style:italic;*/
+}
+ 
+a {
+ color: #cd5252;
+ text-decoration:none;
+}
+ 
+a:hover {
+ color:#963c3c;
+ text-decoration: none;
+}
+ 
+/* -------------------------------
+ Структура
+ ----------------------------------*/
+ 
+#wrapper {
+ margin-top:40px;
+ border:0px solid #000;
+ width: 100%;
+ max-width: auto;
+ margin: 0 auto;
+ height: auto !important;
+}
+ 
+/* -------------------------------
+ Шапка сайта
+ ----------------------------------*/
+ 
+#headerInner {
+ border: 0px solid #000;
+ background: #3F72AF;
+ position:relative;
+ width:100%;
+ max-width:auto;
+ height:100px;
+ margin:0 auto;
+ margin-top:0px;
+}
+ 
+.text {
+ margin:15px;
+ 
+}
+ 
+/* -------------------------------
+ Основной контент
+ ----------------------------------*/
+ 
+#content #colMain {
+ 
+border: 0px solid #000;
+ float:left;
+ width:auto;
+ margin-left:30px;
+ margin-right:0px;
+ background: #F9F7F7;
+}
+ 
+
+/*----------------------------
+ Логотип
+ ------------------------------*/
+ 
+.logo {
+ position:absolute;
+ left:0px;
+ top:40px;
+}
+ 
+.logo a {
+ margin-left:30px;
+ font-size:30px;
+ color:black;
+/* color:#96b551;*/
 }
 
-ol, ul {
-  list-style: none;
+.sprava {
+position: absolute;
+right: 0px;
+width: 300px;
+height: 300px;
+background: #fd0;
 }
 
-blockquote, q {
-  quotes: none;
+@media screen and (min-width:200px) and (max-width:1024px) {
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
+@media screen and (min-width:100px) and (max-width:1024px) {
+/* размер блока, где находятся главный контент и сайтбар*/
+body #wrapper {
+ margin-top:40px;
+ width: 90%;
+ margin: 0 auto;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+/* размер шапки сайта*/
+
+body #headerInner {
+ width:90%;
+ margin:0 auto;
+}
+ 
+/* размер главного контента*/
+
+#wrapper #content #colMain {
+ width:67%;
+}
+ 
+/* размер сайтбара*/
+ 
+#wrapper #content #colMenu {
+ margin-left:3%;
+ width:30%;
 }
 
-body {
-  font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
-  color: #404040;
-  background: #0ca3d2;
+} /* скобка, закрывающая тег @media screen*/
+
+@media screen and (min-width:100px) and (max-width:768px) {
+ #wrapper #colMain {
+  float:none;
+  width:100%;
+  margin-right:0px;
+ }
+
+ #wrapper #colMenu {
+  margin-left:0px;
+  margin-top:25px;
+  float:none;
+  width:100%;
+ }
 }
 
-.container {
-  margin: 80px auto;
-  width: 640px;
+img {
+ max-width: 100%;
+ height: auto;
+ width: auto\9; /* для ie8 */
 }
 
 .login {
@@ -106,38 +206,8 @@ body {
 .login input[type=text], .login input[type=password] {
   width: 278px;
 }
-.login p.remember_me {
-  float: left;
-  line-height: 31px;
-}
-.login p.remember_me label {
-  font-size: 12px;
-  color: #777;
-  cursor: pointer;
-}
-.login p.remember_me input {
-  position: relative;
-  bottom: 1px;
-  margin-right: 4px;
-  vertical-align: middle;
-}
 .login p.submit {
   text-align: right;
-}
-
-.login-help {
-  margin: 20px 0;
-  font-size: 11px;
-  color: white;
-  text-align: center;
-  text-shadow: 0 1px #2a85a1;
-}
-.login-help a {
-  color: #cce7fa;
-  text-decoration: none;
-}
-.login-help a:hover {
-  text-decoration: underline;
 }
 
 :-moz-placeholder {
@@ -208,10 +278,96 @@ input[type=submit]:active {
 .lt-ie9 input[type=text], .lt-ie9 input[type=password] {
   line-height: 34px;
 }
-    #menu{
-    	position:fixed;
-    	left:10px;
-    	top:5%;
-    	border:1px solid black;
-    	width:120px;
-    }
+
+.config {
+  position: relative;
+  margin: 150px auto 0 auto;
+  padding: 20px 20px 20px;
+  width: 600px;
+  background: white;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.config:before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  z-index: -1;
+  background: rgba(0, 0, 1, 0.08);
+  border-radius: 4px;
+}
+.config h1 {
+  margin: -20px -20px 21px;
+  line-height: 40px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #555;
+  text-align: center;
+  text-shadow: 0 1px white;
+  background: #f3f3f3;
+  border-bottom: 1px solid #cfcfcf;
+  border-radius: 3px 3px 0 0;
+  background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
+  background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
+  background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
+  background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+  -webkit-box-shadow: 0 1px whitesmoke;
+  box-shadow: 0 1px whitesmoke;
+}
+.config p {
+  margin: 20px 0 0;
+}
+.config p:first-child {
+  margin-top: 0;
+}
+.config input[type=text], .setup input[type=password] {
+  width: 278px;
+}
+.config p.submit {
+  text-align: right;
+}
+
+
+/* -------------------------------
+Меню
+ ----------------------------------*/
+ 
+#content #colMenu {
+ position:relative;
+ margin-left:0px;
+ float:left;
+ width: 300px;
+ height: auto; 
+ border: 0px solid #1FA2E1;
+ background: #DBE2EF;
+}
+ 
+#middle:after {
+ content: '.';
+ display: block;
+ clear: both;
+ visibility: hidden;
+ height: 0;
+}
+
+.colMenu a {
+  background-color: #DBE2EF;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.colMenu a:hover {
+  background-color: #3F72AF;
+}
+
+.colMenu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+

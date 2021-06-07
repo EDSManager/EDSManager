@@ -10,14 +10,22 @@ if (isset ($_SESSION["userid"])) {
 else {
 
     echo "<!DOCTYPE html>";
-    echo "<head><title>EDSManager</title>";
+    echo "<head><title>Вход в EDSManager</title>";
     echo '<meta charset="utf-8">';
     echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">';
-//    echo '<link rel="stylesheet" href="../css/style.css">';
+
+    echo '<link rel="stylesheet" href="../css/style.css">';
     echo "</head>";
 
 echo "<body>";
   echo '<section class="container">';
+
+echo '<div id="headerInner">';
+echo '<div class="logo">';
+echo '<a href="/">EDS Manager</a>';
+echo '</div>';
+echo '</div>';
+
     echo '<div class="login">';
       echo "<h1>EDSManager</h1>";
       echo '<form action="check_user.php" method="post" enctype="multipart/form-data">';

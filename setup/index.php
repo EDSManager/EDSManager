@@ -4,10 +4,11 @@
 require_once ('../approot.inc.php');
 
 echo "<!DOCTYPE html>";
-echo "<head><title>EDSManager</title>";
+echo '<html lang="ru">';
+echo "<head><title>Настройка EDSManager</title>";
 echo '<meta charset="utf-8">';
 echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">';
-//echo '<link rel="stylesheet" href="../css/style.css">';
+echo '<link rel="stylesheet" href="../css/style.css">';
 echo "</head>";
 
 echo "<body>";
@@ -40,9 +41,15 @@ if (file_exists(CONFIG_FILE)){
 
         }
 
-
         echo '<section class="container">';
-        echo '<div class="login">';
+
+echo '<div id="headerInner">';
+echo '  <div class="logo">';
+echo '     <a href="/">EDS Manager</a>';
+echo '  </div>';
+echo '</div>';
+
+        echo '<div class="config">';
 
 echo '<h2>Настройка доступа к базе данных</h2>';
 echo '<form action="save_config.php" method="post" enctype="multipart/form-data" class = "new_form1">';
