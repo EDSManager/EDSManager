@@ -37,7 +37,7 @@ if (!empty($_POST)) {
 <h1>EDSManager</h1>
 
 <form action="./login.php" method="post" enctype="multipart/form-data">
-<p><label><input type="text" name="q_login" value="" placeholder="Логин или Email"></label></p>
+<p><label><input type="text" name="q_login" value="" placeholder="Логин"></label></p>
 <p><label><input type="password" name="q_password" value="" placeholder="Пароль"></label></p>
 
         <?php if (isset($error)):
