@@ -6,6 +6,10 @@ if (!empty($_POST)) {
 
     if ($login == '' & $password == '') {
         $error = 'Логин и пароль не могут быть пустые';
+    } else if ($login == '') {
+        $error = "Логин не может быть пустым";
+    } else if ($password == '') {
+        $error = 'Пароль не может быть пустым';
     } else if ($login != 'eds') {
         $error = 'Неверный логин';
     }
