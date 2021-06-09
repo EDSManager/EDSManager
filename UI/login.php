@@ -6,12 +6,10 @@ if (!empty($_POST)) {
 
     if (!preg_match("#^[aA-zZ0-9]+$#",$login)) {
         $error = 'В логине недопустимые символы';
-    } else if ($login == '' & $password == '') {
-        $error = 'Логин и пароль не могут быть пустые';
-    } else if ($login == '') {
-        $error = "Логин не может быть пустым";
     } else if ($password == '') {
         $error = 'Пароль не может быть пустым';
+    } else if ($login != 'eds') {
+        $error = 'Неверный логин или пароль';
     }
 
 }
@@ -38,15 +36,9 @@ if (!empty($_POST)) {
 <div class="login">
 <h1>EDSManager</h1>
 
-
-
-    <form action="./login.php" method="post" enctype="multipart/form-data">
-<p><label>
-        <input type="text" name="q_login" value="" placeholder="Логин или Email">
-    </label></p>
-<p><label>
-        <input type="password" name="q_password" value="" placeholder="Пароль">
-    </label></p>
+<form action="./login.php" method="post" enctype="multipart/form-data">
+<p><label><input type="text" name="q_login" value="" placeholder="Логин или Email"></label></p>
+<p><label><input type="password" name="q_password" value="" placeholder="Пароль"></label></p>
 
         <?php if (isset($error)):
             echo '<span style="color: red;">';
