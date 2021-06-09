@@ -1,17 +1,17 @@
 <?php
 if (!empty($_POST)) {
 
-    $login = $_POST['q_login'] ?? '';
-    $password = $_POST['q_password'] ?? '';
+    $login = $_POST['q_login'];
+    $password = $_POST['q_password'];
 
-    if ($login == '' & $password == '') {
+    if (!preg_match("#^[aA-zZ0-9]+$#",$login)) {
+        $error = 'В логине недопустимые символы';
+    } else if ($login == '' & $password == '') {
         $error = 'Логин и пароль не могут быть пустые';
     } else if ($login == '') {
         $error = "Логин не может быть пустым";
     } else if ($password == '') {
         $error = 'Пароль не может быть пустым';
-    } else if ($login != 'eds') {
-        $error = 'Неверный логин';
     }
 
 }
