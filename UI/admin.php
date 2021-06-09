@@ -7,7 +7,6 @@ session_start();
 
 if (isset ($_SESSION["userid"])) {
 
-
     echo '<!DOCTYPE html>';
     echo '<html lang="ru">';
     echo '<head><title>EDS Manager</title>';
@@ -18,9 +17,9 @@ if (isset ($_SESSION["userid"])) {
     echo '</head>';
     echo '<body>';
     echo '<div id="headerInner">';
-    echo '  <div class="logo">';
-    echo '     <a href="#">EDS Manager</a>';
-    echo '  </div>';
+    echo '<div class="logo">';
+    echo '<a href="#">EDS Manager</a>';
+    echo '</div>';
 
     echo '<div class = "sprava">               ';
     echo "Добро пожаловать в EDSManager, ".$_SESSION["userid"];
@@ -29,49 +28,47 @@ if (isset ($_SESSION["userid"])) {
     echo '</div>';
     echo '<!-- начало wrapper -->';
     echo '<div id="wrapper">';
-    echo '   <div id="middle">';
-    echo '       <div id="content">';
+    echo '<div id="middle">';
+    echo '<div id="content">';
 
     include ("./main_menu.php");
 
-    echo '          <div id="colMain">';
-    echo '              <div class="text">';
+    echo '<div id="colMain">';
+    echo '<div class="text">';
 
+    echo "<h2>Учетные записи пользователей:</h2>";
 
-    echo "<h1>Пользователи:</h1>";
+    $bLink = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd'], $MySettings['db_name']);
 
-// подключаемся к серверу с параметрами из конфигурационного файла
-    $link = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd'], $MySettings['db_name']);
+    $sQuery = "SELECT id, login FROM users";
+    $bResult = mysqli_query($bLink, $sQuery) or die("Connection failed: " . mysqli_connect_error());
 
-    $query = "SELECT id, login FROM users";
-    $result = mysqli_query($link, $query) or die("Connection failed: " . mysqli_connect_error());
-
-    if ($result)
+    if ($bResult)
     {
-    $rows = mysqli_num_rows($result); // количество полученных строк
+    $aRows = mysqli_num_rows($bResult); // количество полученных строк
 
     echo "<table><tr><th>id</th><th>login</th></tr>";
 
-    for ($i = 0 ; $i < $rows ; ++$i)
+    for ($i = 0 ; $i < $aRows ; ++$i)
     {
-        $row = mysqli_fetch_row($result);
+        $aRow = mysqli_fetch_row($bResult);
         echo "<tr>";
-        for ($j = 0 ; $j < 2 ; ++$j) echo "<td>$row[$j]</td>";
+        for ($j = 0 ; $j < 2 ; ++$j) echo "<td>$aRow[$j]</td>";
         echo "</tr>";
     }
     echo "</table>";
 
 
     }
-    mysqli_close($link);
+    mysqli_close($bLink);
 
     echo '<a href="./add_user.php"> Добавить пользователя</a>';
 
 
-    echo '              </div>';
-    echo '          </div><!-- конец colLeft -->';
-    echo '       </div><!-- конец content -->';
-    echo '   </div><!-- конец middle -->';
+    echo '</div>';
+    echo '</div><!-- конец colLeft -->';
+    echo '</div><!-- конец content -->';
+    echo '</div><!-- конец middle -->';
     echo '</div><!-- конец wrapper -->';
     echo '</body>';
     echo '</html>';

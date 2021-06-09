@@ -3,39 +3,33 @@
 require_once ('../approot.inc.php');
 require_once (CONFIG_FILE);
 
-//Принимаем данные
-$q_login = $_POST['q_login'];
-$q_password = $_POST['q_password'];
+$sQLogin = $_POST['q_login'];
+$sQPassword = $_POST['q_password'];
 
-// подключаемся к серверу базы данных с параметрами из конфигурационного файла
-$link = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd'], $MySettings['db_name']);
+$bLink = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd'], $MySettings['db_name']);
 
-if (!$link) {
+if (!$bLink) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// выполняем операции с базой данных
-$query ="SELECT id FROM users WHERE login = '". $q_login . "' AND password = '". MD5($q_password) ."'";
+$sQuery ="SELECT id FROM users WHERE login = '". $sQLogin . "' AND password = '". MD5($sQPassword) ."'";
 
-$result = mysqli_query($link, $query);
-$row = mysqli_fetch_row($result);
+$bResult = mysqli_query($bLink, $sQuery);
+$aRow = mysqli_fetch_row($bResult);
 
-$id_user = $row[0];
+$iUserId = (int)$aRow[0];
 
-// закрываем подключение
-mysqli_close($link);
+mysqli_close($bLink);
 
-if ($id_user > 0) {
+if ($iUserId > 0) {
 
     session_start();
-    $_SESSION['userid'] = $id_user;
+    $_SESSION['userid'] = $iUserId;
 
     header("Location: ./main.php");
-}
-else {
+
+} else {
 
     header("Location: ./");
+
 }
-
-
-?>

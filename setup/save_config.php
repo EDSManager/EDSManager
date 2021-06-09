@@ -2,17 +2,14 @@
 
 require_once ('../approot.inc.php');
 
-
-//Принимаем данные
-$db_host=$_POST['db_host'];
-$db_name=$_POST['db_name'];
-$db_user=$_POST['db_user'];
-$db_pwd=$_POST['db_pwd'];
+$sDbHost = $_POST['db_host'];
+$sDbName = $_POST['db_name'];
+$sDbUser = $_POST['db_user'];
+$sDbPwd = $_POST['db_pwd'];
 
 if (!file_exists(CONFIG_FILE)) {
     echo 'Создаётся файл конфигурации: ' . CONFIG_FILE;
 
-//создаем конфигурационный файл
     to_cnf('<?php');
     to_cnf('');
     to_cnf('/**');
@@ -25,19 +22,19 @@ if (!file_exists(CONFIG_FILE)) {
     to_cnf('');
     to_cnf('// Сервер базы данных');
     to_cnf('// localhost');
-    to_cnf("'db_host' => '" . $db_host . "',");
+    to_cnf("'db_host' => '" . $sDbHost . "',");
     to_cnf('');
     to_cnf('// Имя базы данных');
     to_cnf('// eds');
-    to_cnf("'db_name' => '" . $db_name . "',");
+    to_cnf("'db_name' => '" . $sDbName . "',");
     to_cnf('');
     to_cnf('// Имя пользователя базы данных');
     to_cnf('//');
-    to_cnf("'db_user' => '" . $db_user . "',");
+    to_cnf("'db_user' => '" . $sDbUser . "',");
     to_cnf('');
     to_cnf('// Пароль пользователя базы данных');
     to_cnf('//');
-    to_cnf("'db_pwd' => '" . $db_pwd . "'");
+    to_cnf("'db_pwd' => '" . $sDbPwd . "'");
     to_cnf('');
     to_cnf(');');
 
