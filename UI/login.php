@@ -92,11 +92,8 @@ if (!empty($_POST)) {
                     <p><label><input type="text" name="q_login" value="" placeholder="Логин"></label></p>
                     <p><label><input type="password" name="q_password" value="" placeholder="Пароль"></label></p>
 
-                        <?php if (isset($sError)):
-                            echo '<span style="color: red;">';
-                            echo $sError;
-                            echo '</span>';
-                        endif; ?>
+                        <?php if (isset($sError)) echo '<span style="color: red;">'. $sError .'</span>';
+                        ?>
 
                     <p class="submit"><input type="submit" name="commit" value="Войти"></p>
                 </form>
