@@ -36,11 +36,15 @@ if (!empty($_POST)) {
             session_start();
             $_SESSION['userid'] = $iUserId;
 
+            // тут место где надо записать в журнал logins параметры со статусом OK
+
             header("Location: ./main.php");
 
         } else {
 
             $sError = "Неверный логин или пароль";
+
+            // тут место где надо записать в журнал logins параметры со статусом ERROR
         }
 
     }
