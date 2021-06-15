@@ -7,7 +7,7 @@
     if (!empty($_POST)) {
 
         $sQLogin = $_POST['q_login'];
-        $sQPassword = $_POST['q_password'];
+        $sQPassword = MD5($_POST['q_password']);
         //date_default_timezone_set("Europe/Moscow");
         //$dateLogin = date ("d:m:y H:i:s");
         $ipAddres = $_SERVER['REMOTE_ADDR'];
@@ -24,7 +24,7 @@
         if (empty($sError)) {
 
             //Получаем уникальный идентификатор пользователя
-            $sQuery = "SELECT id FROM users WHERE login = '" . $sQLogin . "' AND password = '" . MD5($sQPassword) . "'";
+            $sQuery = "SELECT id FROM users WHERE login = '" . $sQLogin . "' AND password = '" . $sQPassword . "'";
             $selectResult = mysqli_query($linkDatabase, $sQuery);
             $aRow = mysqli_fetch_row($selectResult);
 
