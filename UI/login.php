@@ -9,7 +9,7 @@
         $sQLogin = $_POST['q_login'];
         $sQPassword = $_POST['q_password'];
         date_default_timezone_set("Europe/Moscow");
-        $dateLogin = date ("d:m:y H:i:s");
+        //$dateLogin = date ("d:m:y H:i:s");
         $ipAddres = $_SERVER['REMOTE_ADDR'];
         $browser = $_SERVER['HTTP_USER_AGENT'];
 
@@ -36,13 +36,13 @@
                 session_start();
                 $_SESSION['userid'] = $iUserId;
 
-                $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ('" . $dateLogin . "', '" . $ipAddres . "', '" .$iUserId . "', '" . $browser . "', 'ok')";
+                $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ( NOW(), '" . $ipAddres . "', '" .$sQLogin . "', '" . $browser . "', 'ok')";
                 $insertResult = mysqli_query($linkDatabase, $insertQuery);
                 header("Location: ./main.php");
 
             } else {
                 $sError = 'Неверный логин или пароль';
-                $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ('" . $dateLogin . "', '" . $ipAddres . "', '" .$iUserId . "', '" . $browser . "', 'error')";
+                $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ( NOW(), '" . $ipAddres . "', '" .$sQLogin . "', '" . $browser . "', 'error')";
                 $insertResult = mysqli_query($linkDatabase, $insertQuery);
             }
         }
