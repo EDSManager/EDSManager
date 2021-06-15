@@ -18,7 +18,7 @@ if (isset ($_SESSION["userid"])) {
     echo '<body>';
     echo '<div id="headerInner">';
     echo '<div class="logo">';
-    echo '<a href="#">EDS Manager</a>';
+    echo '<a href="../">EDS Manager</a>';
     echo '</div>';
 
     echo '<div class = "sprava">               ';
