@@ -2,39 +2,41 @@
 
 session_start();
 
-if (isset ($_SESSION["userid"])) {
+if (isset ($_SESSION["userid"])): ?>
 
-    echo '<!DOCTYPE html>';
-    echo '<html lang="ru">';
-    echo '<head><title>EDS Manager</title>';
-    echo '<meta charset="utf-8" />';
-    echo '<meta name="viewport" content="width=device-width, initial-scale=1.0" />';
-    echo '<link rel="stylesheet" href="../css/style.css">';
-    echo '</head>';
-    echo '<body>';
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head><title>EDS Manager</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css">
+    </head>
 
-    include("./head.inc.php");
+    <body>
 
-    echo '<!-- начало wrapper -->';
-    echo '<div id="wrapper">';
-    echo '<div id="middle">';
-    echo '<div id="content">';
+<?php include("./head.inc.php"); ?>
 
-    include("./menu.inc.php");
+    <!-- начало wrapper -->
+    <div id="wrapper">
+        <div id="middle">
+            <div id="content">
 
-    echo '<div id="colMain">';
-    echo '<div class="text">';
-    echo '<h1>Основной контент</h1>';
-    echo '<p>Здесь будет находится основной контент страницы</p>';
-    echo '</div>';
-    echo '</div><!-- конец colLeft -->';
-    echo '</div><!-- конец content -->';
-    echo '</div><!-- конец middle -->';
-    echo '</div><!-- конец wrapper -->';
-    echo '</body>';
-    echo '</html>';
-} else {
+<?php include("./menu.inc.php"); ?>
 
-    header("Location: ../");
+                <div id="colMain">
+                    <div class="text">
+                        <h1>Основной контент</h1>
+                        <p><br>Здесь будет находится основной контент страницы</p>
+                        <p><br>Пользователи: </p>
+                        <p><br>Организации: </p>
+                    </div>
+                </div><!-- конец colLeft -->
+            </div><!-- конец content -->
+        </div><!-- конец middle -->
+    </div><!-- конец wrapper -->
+    </body>
+    </html>
 
-};
+<?php else: header("Location: ../"); ?>
+
+<?php endif; ?>
