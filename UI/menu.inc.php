@@ -5,9 +5,10 @@
     <div id="colMenu">
 
         <div class="text">
-    <select id="org_id" title="">
-        <option value=""> Все организации </option>
-    </select>
+            <select id="org_id" title="" style="width: 100%; height: 30px">
+                <option value=""> Все организации </option>
+                <option value=""> Только моя организация </option>
+            </select>
         </div>
 
         <div class="colMenu">
