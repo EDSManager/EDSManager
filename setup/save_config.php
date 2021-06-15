@@ -46,11 +46,10 @@ include_once ('./mysql_connect.php');
 
 function to_cnf ($a) {
 
-    //открываем файл для записи.Если файл не существует-он будет создан
     $fopen  =  fopen(CONFIG_FILE, 'a+') or die("не удалось создать файл: ".CONFIG_FILE);
-//записываем строку
+
     fputs ($fopen, $a.PHP_EOL);
-//закрываем файл
+
     fclose ($fopen);
 
     if (!file_exists(CONFIG_FILE)) {
