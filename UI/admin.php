@@ -16,22 +16,15 @@ if (isset ($_SESSION["userid"])) {
 
     echo '</head>';
     echo '<body>';
-    echo '<div id="headerInner">';
-    echo '<div class="logo">';
-    echo '<a href="#">EDS Manager</a>';
-    echo '</div>';
 
-    echo '<div class = "sprava">               ';
-    echo "Добро пожаловать в EDSManager, ".$_SESSION["userid"];
-    echo '</div>';
+    include("./head.inc.php");
 
-    echo '</div>';
     echo '<!-- начало wrapper -->';
     echo '<div id="wrapper">';
     echo '<div id="middle">';
     echo '<div id="content">';
 
-    include ("./main_menu.php");
+    include("./menu.inc.php");
 
     echo '<div id="colMain">';
     echo '<div class="text">';

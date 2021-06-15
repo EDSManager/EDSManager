@@ -18,5 +18,5 @@
     </div>
     <!-- конец colMenu -->
 
-<?php else: header("Location: ../"); ?>
+<?php else: header("Location: /"); ?>
 <?php endif; ?>

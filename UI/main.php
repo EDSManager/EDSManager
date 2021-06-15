@@ -12,21 +12,15 @@ if (isset ($_SESSION["userid"])) {
     echo '<link rel="stylesheet" href="../css/style.css">';
     echo '</head>';
     echo '<body>';
-    echo '<div id="headerInner">';
-    echo '<div class="logo">';
-    echo '<a href="#">EDS Manager</a>';
-    echo '</div>';
-    echo '<div class = "sprava">               ';
-    echo "Добро пожаловать в EDSManager, ".$_SESSION["userid"];
-    echo '</div>';
-    echo '</div>';
+
+    include("./head.inc.php");
 
     echo '<!-- начало wrapper -->';
     echo '<div id="wrapper">';
     echo '<div id="middle">';
     echo '<div id="content">';
 
-    include ("./main_menu.php");
+    include("./menu.inc.php");
 
     echo '<div id="colMain">';
     echo '<div class="text">';
