@@ -1,80 +1,65 @@
 <?php
 
-require_once ('../approot.inc.php');
-require_once (CONFIG_FILE);
+    require_once ('../setup/database.php');
+    require_once ('../approot.inc.php');
+    require_once (CONFIG_FILE);
 
-if (!empty($_POST)) {
+    if (!empty($_POST)) {
 
-    $sQLogin = $_POST['q_login'];
-    $sQPassword = $_POST['q_password'];
+        $sQLogin = $_POST['q_login'];
+        $sQPassword = $_POST['q_password'];
+        date_default_timezone_set("Europe/Moscow");
+        $dateLogin = date ("d:m:y H:i:s");
+        $ipAddres = $_SERVER['REMOTE_ADDR'];
+        $browser = $_SERVER['HTTP_USER_AGENT'];
 
-    $sError = '';
+        $sError = '';
 
-    if (!preg_match("#^[aA-zZ0-9]+$#",$sQLogin)) {
-        $sError = 'В логине недопустимые символы';
-    } else if ($sQPassword == '') {
-        $sError = 'Пароль не может быть пустым';
-    }
-
-    if (empty($sError)) {
-
-        $bLink = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd'], $MySettings['db_name']);
-        if (!$bLink) {
-            die("Connection failed: " . mysqli_connect_error());
+        if (!preg_match("#^[aA-zZ0-9]+$#",$sQLogin)) {
+            $sError = 'В логине недопустимые символы';
+        } else if ($sQPassword == '') {
+            $sError = 'Пароль не может быть пустым';
         }
 
-        $sQuery = "SELECT id FROM users WHERE login = '" . $sQLogin . "' AND password = '" . MD5($sQPassword) . "'";
+        if (empty($sError)) {
 
-        $bResult = mysqli_query($bLink, $sQuery) or die("Connection failed: " . mysqli_connect_error());;
-        $aRow = mysqli_fetch_row($bResult);
-        $iUserId = (int)$aRow[0];
+            //Получаем уникальный идентификатор пользователя
+            $sQuery = "SELECT id FROM users WHERE login = '" . $sQLogin . "' AND password = '" . MD5($sQPassword) . "'";
+            $selectResult = mysqli_query($linkDatabase, $sQuery);
+            $aRow = mysqli_fetch_row($selectResult);
 
-        mysqli_close($bLink);
+            //Определение идентификатора пользователя
+            $iUserId = $aRow != null ? (int)$aRow[0] : 0;
 
-        if ($iUserId > 0) {
+            if ($iUserId > 0) {
 
-            session_start();
-            $_SESSION['userid'] = $iUserId;
+                session_start();
+                $_SESSION['userid'] = $iUserId;
 
-            // тут место где надо записать в журнал logins параметры со статусом OK
+                $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ('" . $dateLogin . "', '" . $ipAddres . "', '" .$iUserId . "', '" . $browser . "', 'ok')";
+                $insertResult = mysqli_query($linkDatabase, $insertQuery);
+                header("Location: ./main.php");
 
-            header("Location: ./main.php");
-
-        } else {
-
-            $sError = "Неверный логин или пароль";
-
-            // тут место где надо записать в журнал logins параметры со статусом ERROR
+            } else {
+                $sError = 'Неверный логин или пароль';
+                $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ('" . $dateLogin . "', '" . $ipAddres . "', '" .$iUserId . "', '" . $browser . "', 'error')";
+                $insertResult = mysqli_query($linkDatabase, $insertQuery);
+            }
         }
-
     }
 
-//    echo date ('m.d.y H:i:s');
-//    echo "<br>";
-//    echo "User: ".$login;
-//    echo "<br>";
-//    echo "Браузер: ".$_SERVER['HTTP_USER_AGENT'];
-//    echo "<br>";
-//    echo "Remote address: ".$_SERVER['REMOTE_ADDR'];
-//    echo "<br>";
-//    echo "Status: ";
+    mysqli_close($linkDatabase);
 
-//    if ($error == '') {
-//        echo "OK";
-//    } else {
-//        echo "Error";
-//    };
-};
 ?>
 
 <!DOCTYPE html>
     <html lang="ru">
-        <head>
-            <title>Вход в EDSManager</title>
-            <meta charset="utf-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-            <link rel="stylesheet" href="../css/style.css">
-        </head>
+    <head>
+        <title>Вход в EDSManager</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
 
     <body>
         <section class="container">
@@ -85,15 +70,16 @@ if (!empty($_POST)) {
             </div>
 
             <div class="login">
-
                 <h1>Вход в EDSManager</h1>
-
                 <form action="./login.php" method="post" enctype="multipart/form-data">
                     <p><label><input type="text" name="q_login" value="" placeholder="Логин"></label></p>
                     <p><label><input type="password" name="q_password" value="" placeholder="Пароль"></label></p>
 
-     <?php if (isset($sError)) echo '<span style="color: red;">'. $sError .'</span>';
-     ?>
+                    <?php
+                        if (isset($sError)) {
+                            echo '<span style="color: red;">'. $sError .'</span>';
+                        }
+                    ?>
 
                     <p class="submit"><input type="submit" name="commit" value="Войти"></p>
                 </form>
