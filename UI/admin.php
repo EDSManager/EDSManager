@@ -38,26 +38,32 @@ if (isset ($_SESSION["userid"])) {
 
     echo "<h2>Учетные записи пользователей:</h2>";
 
+    echo '<br>Всего: ХХХ элементов <br>';
+    echo 'Страницы:  <br><br>';
+
     $bLink = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd'], $MySettings['db_name']);
 
     $sQuery = "SELECT id, login FROM users";
     $bResult = mysqli_query($bLink, $sQuery) or die("Connection failed: " . mysqli_connect_error());
 
-    if ($bResult)
-    {
+    if ($bResult) {
     $aRows = mysqli_num_rows($bResult); // количество полученных строк
 
-    echo "<table><tr><th>id</th><th>login</th></tr>";
+    echo '<table>';
+    echo '<tr><th>id</th><th>Пользователь</th><th>Статус</th><th>Фамилия</th><th>Имя</th><th>Отчество</th><th>Организация</th></tr>';
 
-    for ($i = 0 ; $i < $aRows ; ++$i)
-    {
-        $aRow = mysqli_fetch_row($bResult);
-        echo "<tr>";
-        for ($j = 0 ; $j < 2 ; ++$j) echo "<td>$aRow[$j]</td>";
-        echo "</tr>";
-    }
+        for ($i = 0 ; $i < $aRows ; ++$i) {
+            $aRow = mysqli_fetch_row($bResult);
+            echo "<tr>";
+            for ($j = 0 ; $j < 2 ; ++$j) echo "<td>$aRow[$j]</td>";
+            echo '<td></td>';
+            echo '<td></td>';
+            echo '<td></td>';
+            echo '<td></td>';
+            echo '<td></td>';
+            echo "</tr>";
+        }
     echo "</table>";
-
 
     }
     mysqli_close($bLink);
