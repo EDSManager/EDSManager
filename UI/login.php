@@ -8,7 +8,7 @@
 
         $sQLogin = $_POST['q_login'];
         $sQPassword = $_POST['q_password'];
-        date_default_timezone_set("Europe/Moscow");
+        //date_default_timezone_set("Europe/Moscow");
         //$dateLogin = date ("d:m:y H:i:s");
         $ipAddres = $_SERVER['REMOTE_ADDR'];
         $browser = $_SERVER['HTTP_USER_AGENT'];
@@ -29,7 +29,8 @@
             $aRow = mysqli_fetch_row($selectResult);
 
             //Определение идентификатора пользователя
-            $iUserId = $aRow != null ? (int)$aRow[0] : 0;
+            //$iUserId = $aRow != null ? (int)$aRow[0] : 0;
+            $iUserId = (int)$aRow[0];
 
             if ($iUserId > 0) {
 
@@ -38,6 +39,7 @@
 
                 $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ( NOW(), '" . $ipAddres . "', '" .$sQLogin . "', '" . $browser . "', 'ok')";
                 $insertResult = mysqli_query($linkDatabase, $insertQuery);
+
                 header("Location: ./main.php");
 
             } else {
