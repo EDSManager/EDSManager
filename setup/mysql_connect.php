@@ -7,10 +7,6 @@ echo "<br> Подключение к серверу базы данных (".$My
 
 $bLink = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd']) or die("Connection failed: " . mysqli_connect_error());
 
-if (!$bLink) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
 echo " - OK <br>";
 echo "<br> Подключение к базе данных (".$MySettings['db_name'].")";
 
