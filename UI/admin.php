@@ -3,6 +3,8 @@
 require_once ('../approot.inc.php');
 require_once (CONFIG_FILE);
 
+use \EDSManager\Classes\DB;
+
 session_start();
 
 if (isset ($_SESSION["userid"])): ?>
@@ -35,21 +37,20 @@ if (isset ($_SESSION["userid"])): ?>
                         Страницы:  <br><br>
 
 <?php
-    $bLink = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd'], $MySettings['db_name']);
 
-    $sQuery = "SELECT id, login FROM users";
-    $bResult = mysqli_query($bLink, $sQuery) or die("Connection failed: " . mysqli_connect_error());
+$database = new DB();
+$aResult = $database->query('SELECT id, login FROM users');
 
-    if ($bResult) {
-    $aRows = mysqli_num_rows($bResult); // количество полученных строк
+if ($aResult) {
 
     echo '<table>';
     echo '<tr><th>id</th><th>Пользователь</th><th>Статус</th><th>Фамилия</th><th>Имя</th><th>Отчество</th><th>Организация</th></tr>';
 
-        for ($i = 0 ; $i < $aRows ; ++$i) {
-            $aRow = mysqli_fetch_row($bResult);
-            echo "<tr>";
-            for ($j = 0 ; $j < 2 ; ++$j) echo "<td>$aRow[$j]</td>";
+    foreach ($aResult as $row)
+        {
+            echo '<tr>';
+            echo '<td>'. $row['id'] . '</td>';
+            echo '<td>'. $row['login'] .'</td>';
             echo '<td></td>';
             echo '<td></td>';
             echo '<td></td>';
@@ -57,12 +58,12 @@ if (isset ($_SESSION["userid"])): ?>
             echo '<td></td>';
             echo "</tr>";
         }
-    echo "</table>";
+
+        echo "</table>";
+
     }
 
-    mysqli_close($bLink);
-
-    echo '<a href="./add_user.php"> Добавить пользователя</a>';
+        echo '<a href="./add_user.php"> Добавить пользователя</a>';
 
 ?>
                     </div>

@@ -1,7 +1,5 @@
 <?php
 
-// SETUP PAGE
-
 require_once ('../approot.inc.php');
 ?>
 

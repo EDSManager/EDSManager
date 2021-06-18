@@ -1,5 +1,7 @@
 <?php
 
+//use \EDSManager\Classes\Db;
+
 require_once ('../approot.inc.php');
 require_once (CONFIG_FILE);
 
