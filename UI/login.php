@@ -13,6 +13,7 @@
 
         $sError = '';
 
+
         if (!preg_match("#^[aA-zZ0-9]+$#",$sQLogin)) {
             $sError = 'В логине недопустимые символы';
         } else if ($sQPassword == '') {
