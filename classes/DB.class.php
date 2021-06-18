@@ -42,7 +42,7 @@ class DB {
         }
 
 
-    public function query(string $sql, $params = []): ?array
+    public function query(string $sql, $params = []): array
     {
 
         try {
