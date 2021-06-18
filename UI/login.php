@@ -1,17 +1,15 @@
 <?php
 
-    require_once ('../setup/database.php');
     require_once ('../approot.inc.php');
-    require_once (CONFIG_FILE);
+
+    use \EDSManager\Classes\DB;
 
     if (!empty($_POST)) {
 
         $sQLogin = $_POST['q_login'];
-        $sQPassword = MD5($_POST['q_password']);
-        //date_default_timezone_set("Europe/Moscow");
-        //$dateLogin = date ("d:m:y H:i:s");
-        $ipAddres = $_SERVER['REMOTE_ADDR'];
-        $browser = $_SERVER['HTTP_USER_AGENT'];
+        $sQPassword = $_POST['q_password'];
+        $sIpAddres = $_SERVER['REMOTE_ADDR'];
+        $sBrowser = $_SERVER['HTTP_USER_AGENT'];
 
         $sError = '';
 
@@ -21,36 +19,41 @@
             $sError = 'Пароль не может быть пустым';
         }
 
+        $sQPassword = md5($sQPassword);
+
         if (empty($sError)) {
 
-            //Получаем уникальный идентификатор пользователя
-            $sQuery = "SELECT id FROM users WHERE login = '" . $sQLogin . "' AND password = '" . $sQPassword . "'";
-            $selectResult = mysqli_query($linkDatabase, $sQuery);
-            $aRow = mysqli_fetch_row($selectResult);
+            $db = new DB();
+            $sQuery = 'SELECT id FROM users WHERE login = :login AND password = :password';
+            $sParams = array(':login' => $sQLogin, ':password' => $sQPassword);
+            $aResult = $db->query($sQuery, $sParams);
 
-            //Определение идентификатора пользователя
-            //$iUserId = $aRow != null ? (int)$aRow[0] : 0;
-            $iUserId = (int)$aRow[0];
+            if ($aResult != []) {
+                $iUserId = (int)$aResult[0]['id'];
+            } else $iUserId = 0;
 
             if ($iUserId > 0) {
 
                 session_start();
                 $_SESSION['userid'] = $iUserId;
 
-                $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ( NOW(), '" . $ipAddres . "', '" .$sQLogin . "', '" . $browser . "', 'ok')";
-                $insertResult = mysqli_query($linkDatabase, $insertQuery);
+                $sQuery = "INSERT INTO logins ( date, ip, login, browser, status) VALUES (NOW(), :ip, :login, :browser, :status)";
+                $sParams = [':ip' => $sIpAddres, ':login' => $sQLogin, ':browser' => $sBrowser, ':status' => 'OK'];
+                $aResult = $db->query($sQuery, $sParams);
 
                 header("Location: ./main.php");
 
             } else {
                 $sError = 'Неверный логин или пароль';
-                $insertQuery = "INSERT INTO logins (`date`, `ip`, `login`, `browser`, `status`) VALUES ( NOW(), '" . $ipAddres . "', '" .$sQLogin . "', '" . $browser . "', 'error')";
-                $insertResult = mysqli_query($linkDatabase, $insertQuery);
+
+                $sQuery = "INSERT INTO logins ( date, ip, login, browser, status) VALUES (NOW(), :ip, :login, :browser, :status)";
+                $sParams = [':ip' => $sIpAddres, ':login' => $sQLogin, ':browser' => $sBrowser, ':status' => 'ERROR'];
+                $aResult = $db->query($sQuery, $sParams);
+
             }
         }
     }
 
-    mysqli_close($linkDatabase);
 
 ?>
 
@@ -67,7 +70,7 @@
         <section class="container">
             <div id="headerInner">
                 <div class="logo">
-                    <a href="/">EDS Manager</a>
+                    <a href="../">EDS Manager</a>
                 </div>
             </div>
 
