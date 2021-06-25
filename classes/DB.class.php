@@ -62,7 +62,7 @@ class DB {
        }
 
         if (false === $result) {
-            return null;
+            return [null];
         }
 
         try {
