@@ -27,5 +27,9 @@ if (!$bResult) {
     echo "Таблица logins обновлена<br>";
 }
 
+// Таблица organization: Id, Name
 
+// Создание таблицы person: Id, LastName, FirstName, Patronymic
 
+// Создание таблицы keyinfo: Id, SerialNumber, Name, CertificationAuthority, IssuedFor, EDSFormat, Purpose,
+// CertificateValidityBegin, CertificateValidityBegin, CertificateValidityExpire, PrivateKeyExpire, Comment
