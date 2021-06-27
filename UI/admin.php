@@ -79,8 +79,8 @@ $aResult = $database->query('SELECT date, ip, login, status, browser FROM logins
 
     if ($aResult) {
 
-        echo '<table>';
-    echo '<tr><th>Date</th><th>IP</th><th>Login</th><th>Status</th><th>Browser</th></tr>';
+        echo '<table style ="logins">';
+        echo '<tr><th>Date</th><th>IP</th><th>Login</th><th>Status</th><th>Browser</th></tr>';
 
     foreach ($aResult as $row)
         {
