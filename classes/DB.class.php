@@ -14,8 +14,6 @@ class DB {
     public function __construct()
     {
 
-        //$sConfigFile = '../config/config-ESDManager.php';
-       //require $sConfigFile;
         $aMyConfig = new Config('');
 
         try {
