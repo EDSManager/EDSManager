@@ -1,17 +1,26 @@
 <?php
 
+use EDSManager\Classes\DB;
+use EDSManager\Classes\Config;
+
 require_once ('../approot.inc.php');
-require_once (CONFIG_FILE);
 
-$bLink = mysqli_connect($MySettings['db_host'], $MySettings['db_user'], $MySettings['db_pwd'], $MySettings['db_name']);
+$oData = new DB();
+$oConfig = new Config('');
 
-$sQuery = "ALTER TABLE users MODIFY COLUMN login VARCHAR(50) NOT NULL UNIQUE";
-$bResult = mysqli_query($bLink, $sQuery) or die("Connection failed: " . mysqli_error($bLink));
+//$sQuery = "ALTER TABLE users MODIFY COLUMN login VARCHAR(50) NOT NULL UNIQUE";
+//$aResult = $oData->query($sQuery);
+//echo "Таблица users обновлена<br>";
 
-echo "Таблица users обновлена<br>";
+$sQuery ='SHOW TABLES';
+//$sParams = [':dbname' => $oConfig->get('db_name')];
 
-$sQuery ='SHOW TABLES FROM '.$MySettings['db_name'].' LIKE \'logins\'';
-$bResult = mysqli_query($bLink, $sQuery);
+$aResult = $oData->query($sQuery);// , $sParams);
+var_dump($aResult);
+
+die;
+
+//$bResult = mysqli_query($bLink, $sQuery);
 
 if (!$bResult) {
     $sQuery = 'CREATE TABLE logins (
