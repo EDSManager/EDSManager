@@ -43,7 +43,7 @@ $aResult = $database->query('SELECT id, login FROM users');
 
 if ($aResult) {
 
-    echo '<table>';
+    echo '<table class="table"> ';
     echo '<tr><th>id</th><th>Пользователь</th><th>Статус</th><th>Фамилия</th><th>Имя</th><th>Отчество</th><th>Организация</th></tr>';
 
     foreach ($aResult as $row)
@@ -79,7 +79,7 @@ $aResult = $database->query('SELECT date, ip, login, status, browser FROM logins
 
     if ($aResult) {
 
-        echo '<table style ="logins">';
+        echo '<table class = "table">';
         echo '<tr><th>Date</th><th>IP</th><th>Login</th><th>Status</th><th>Browser</th></tr>';
 
     foreach ($aResult as $row)

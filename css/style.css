@@ -12,11 +12,11 @@ body {
  font-size:0.94em;
  line-height:135%;
 }
- 
+
 h1 {
  font-size:30px;
  font-weight:normal;
- padding:0px 0 0px;
+ padding:0 px 0 0 px;
  line-height:100%;
  /*font-style:italic;*/
 }
@@ -37,7 +37,7 @@ a:hover {
  
 #wrapper {
  margin-top:40px;
- border:0px solid #000;
+ border:0 px solid #000;
  width: 100%;
  max-width: 100%;
  margin: 0 auto;
@@ -49,14 +49,14 @@ a:hover {
  ----------------------------------*/
  
 #headerInner {
- border: 0px solid #000;
+ border: 0 px solid #000;
  background: #3F72AF;
  position:relative;
  width:100%;
  max-width:100%;
  height:100px;
  margin:0 auto;
- margin-top:0px;
+ margin-top:0 px;
 }
  
 .text {
@@ -70,14 +70,39 @@ a:hover {
  
 #content #colMain {
  
-border: 0px solid #000;
+border: 0 px solid #000;
  float:left;
  width:auto;
  margin-left:30px;
- margin-right:0px;
+ margin-right:0 px;
  background: #F9F7F7;
 }
  
+.table{
+	border: 1px solid #eee;
+/*	table-layout: fixed;*/
+	width: 100%;
+	margin-bottom: 20px;
+}
+.table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+.table td{
+	padding: 5px 10px;
+	border: 1px solid #eee;
+	text-align: left;
+}
+.table tbody tr:nth-child(odd){
+	background: #fff;
+}
+.table tbody tr:nth-child(even){
+	background: #F7F7F7;
+}
+ 
+
 
 /*----------------------------
  Логотип
@@ -85,7 +110,7 @@ border: 0px solid #000;
  
 .logo {
  position:absolute;
- left:0px;
+ left:0 px;
  top:40px;
 }
  
@@ -98,7 +123,7 @@ border: 0px solid #000;
 
 .sprava {
 position: absolute;
-right: 0px;
+right: 0 px;
 width: 300px;
 }
 
@@ -139,11 +164,11 @@ body #headerInner {
  #wrapper #colMain {
   float:none;
   width:100%;
-  margin-right:0px;
+  margin-right:0 px;
  }
 
  #wrapper #colMenu {
-  margin-left:0px;
+  margin-left:0 px;
   margin-top:25px;
   float:none;
   width:100%;
@@ -328,11 +353,11 @@ input[type=submit]:active {
  
 #content #colMenu {
  position:relative;
- margin-left:0px;
+ margin-left:0 px;
  float:left;
  width: 300px;
  height: auto; 
- border: 0px solid #1FA2E1;
+ border: 0 px solid #1FA2E1;
  background: #DBE2EF;
 }
  
