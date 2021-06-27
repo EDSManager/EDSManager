@@ -1,6 +1,6 @@
 <?php
 
-define('APPROOT', './');
+define('APPROOT', dirname(__FILE__).'/');
 define('APPCONF', APPROOT.'config/');
 define('CONFIG_FILE', APPCONF.'config-ESDManager.php');
 
