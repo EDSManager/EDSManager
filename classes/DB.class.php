@@ -5,6 +5,7 @@ namespace EDSManager\Classes;
 use PDO;
 use PDOException;
 
+
 class DB {
 
     /** @var PDO */
@@ -13,22 +14,24 @@ class DB {
     public function __construct()
     {
 
-        $sConfigFile = '../config/config-ESDManager.php';
-       require $sConfigFile;
+        //$sConfigFile = '../config/config-ESDManager.php';
+       //require $sConfigFile;
+        $aMyConfig = new Config('');
 
         try {
 
             $this->pdo = new PDO(
-               'mysql:host=' . $MySettings['db_host'] . ';dbname=' . $MySettings['db_name'],
-               $MySettings['db_user'],
-               $MySettings['db_pwd']
+               'mysql:host=' . $aMyConfig->get('db_host') . ';dbname=' . $aMyConfig->get('db_name'),
+               $aMyConfig->get('db_user'),
+               $aMyConfig->get('db_pwd')
             );
+
 
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             } catch (PDOException $e) {
                 if ($e->getCode() == 1049) {
-                    echo 'Неверно указано имя базы данных (' .$MySettings['db_name'].'), проверьте файл конфигурации: '. $sConfigFile;
+                    echo 'Неверно указано имя базы данных:' .$aMyConfig->get('db_name');
                     die();
                 } else {
                     echo "Connection failed: " . $e->getMessage();
