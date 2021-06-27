@@ -66,6 +66,43 @@ if ($aResult) {
         echo '<a href="./add_user.php"> Добавить пользователя</a>';
 
 ?>
+
+                        <br>
+                        <br>
+                        <h2>Последние попытки входа:</h2>
+
+                        <br>Всего: ХХХ элементов <br>
+                        Страницы:  <br><br>
+
+
+
+<?php
+
+$aResult = $database->query('SELECT date, ip, login, status, browser FROM logins order by date DESC limit 20');
+
+    if ($aResult) {
+
+        echo '<table>';
+    echo '<tr><th>Date</th><th>IP</th><th>Login</th><th>Status</th><th>Browser</th></tr>';
+
+    foreach ($aResult as $row)
+        {
+            echo '<tr>';
+            echo '<td>'. $row['date'] . '</td>';
+            echo '<td>'. $row['ip'] .'</td>';
+            echo '<td>'. $row['login'] .'</td>';
+            echo '<td>'. $row['status'] .'</td>';
+            echo '<td>'. $row['browser'] .'</td>';
+            echo "</tr>";
+        }
+
+        echo "</table>";
+
+    }
+
+
+
+?>
                     </div>
                 </div><!-- конец colLeft -->
             </div><!-- конец content -->
