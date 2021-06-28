@@ -36,6 +36,7 @@
 
                 session_start();
                 $_SESSION['userid'] = $iUserId;
+                $_SESSION['login'] = $sQLogin;
 
                 $sQuery = "INSERT INTO logins ( date, ip, login, browser, status) VALUES (NOW(), :ip, :login, :browser, :status)";
                 $sParams = [':ip' => $sIpAddres, ':login' => $sQLogin, ':browser' => $sBrowser, ':status' => 'OK'];
